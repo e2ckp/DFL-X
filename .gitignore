@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+DFL/
+*.lock
+.vscode/
+.idea/*
+*.log
+npm-debug.log.*
+thumbs.db
+dist/electron/*
