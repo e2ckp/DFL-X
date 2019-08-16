@@ -1,22 +1,42 @@
 {
-  "name": "dfl",
+  "name": "dfl_x",
   "version": "0.1.0",
   "private": true,
+  "asar": true,
   "author": {
     "name": "liu",
     "email": "1041001122@qq.com",
     "url": "https://www.123456.plus"
   },
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
+    "appId": "com.DFL-X.DFL-X",
+    "productName": "DFL-X",
     "copyright": "Copyright © 2019 ${author}",
+    "compression": "maximum",
     "files": [
       "build/**/*",
+      "static/**/*",
+      "user-config/**/*",
       "node_modules/**/*"
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "win": {
+      "icon": "public/icons/icon.ico",
+      "target": "nsis",
+      "legalTrademarks": "DFL-X",
+      "asarUnpack": [
+        "./static",
+        "./user-config"
+      ]
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "menuCategory": true,
+      "createDesktopShortcut": true,
+      "perMachine": true
     }
   },
   "dependencies": {
@@ -24,8 +44,12 @@
     "@types/node": "12.7.1",
     "@types/react": "16.9.1",
     "@types/react-dom": "16.8.5",
+    "antd": "^3.21.4",
+    "babel-plugin-import": "^1.12.0",
+    "customize-cra": "^0.5.0",
     "electron-is-dev": "^1.1.0",
     "react": "^16.9.0",
+    "react-app-rewired": "^2.1.3",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.0",
     "systeminformation": "^4.14.4"
@@ -33,14 +57,14 @@
   "homepage": "./",
   "main": "public/electron.js",
   "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
-    "electron-pack": "electron-builder"
+    "electron-pack": "electron-builder -w"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -58,8 +82,6 @@
     ]
   },
   "devDependencies": {
-    "@rescripts/cli": "^0.0.11",
-    "@rescripts/rescript-env": "^0.0.10",
     "concurrently": "^4.1.1",
     "cross-env": "^5.2.0",
     "electron": "^6.0.2",
