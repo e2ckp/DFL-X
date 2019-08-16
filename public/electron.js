@@ -33,18 +33,19 @@ const menus = [{
     {
         label: '操作',
         submenu: [{
-            label: '退出',
-            click: () => {
-                let c = dialog.showMessageBoxSync({
-                    type: 'warning',
-                    title: '删除全部项目',
-                    message: '确定删除全部项目？',
-                    detail: '将会删除所有的数据！',
-                    buttons: ['确定', '取消'],
-                    defaultId: 1
-                });
-                if (c === 0) {
-                    console.log('删除全部');
+            label: '重载',
+            accelerator: 'ctrl+shift+r',
+            click: (item, focusedWindow) => {
+                if (focusedWindow) {
+                    // 重载之后, 刷新并关闭所有的次要窗体
+                    if (focusedWindow.id === 1) {
+                        BrowserWindow.getAllWindows().forEach(function (win) {
+                            if (win.id > 1) {
+                                win.close()
+                            }
+                        })
+                    }
+                    focusedWindow.reload()
                 }
             }
         }]
@@ -62,7 +63,7 @@ const menus = [{
                 dialog.showMessageBoxSync({
                     type: 'warning',
                     title: '官方网站',
-                    message: '本软件没有任何官方网站！也没有打算做官方网站！请到GitHub进行下载/更新！'
+                    message: '本软件仅做交流学习使用！没有任何官方网站！也没有计划做官方网站！请到GitHub进行下载/更新！'
                 });
             }
         }, {
@@ -122,9 +123,9 @@ function createWindow() {
     });
 
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
-    // if (isDev) {
+    if (isDev) {
         mainWindow.webContents.openDevTools();
-    // }
+    }
     mainWindow.on('closed', () => mainWindow = null);
     const menu = Menu.buildFromTemplate(menus)
     Menu.setApplicationMenu(menu)
