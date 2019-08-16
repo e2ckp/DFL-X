@@ -11,6 +11,7 @@ yarn install
 yarn dev
 ```
 打包:
+安装[nsis](https://nsis.sourceforge.io/Main_Page)
 ```shell
 yarn electron-pack
 ```
