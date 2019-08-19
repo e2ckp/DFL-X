@@ -1,11 +1,12 @@
 const {
   override,
   fixBabelImports,
-  addWebpackAlias
+  addWebpackAlias,
+  addLessLoader
 } = require('customize-cra');
 const path = require('path');
 
-const addTarget=(config)=>{
+const addTarget = (config) => {
   config.target = 'electron-renderer';
   return config;
 }
@@ -21,4 +22,9 @@ module.exports = override(
     libraryDirectory: 'es',
     style: 'css',
   }),
+  addLessLoader({
+    strictMath: true,
+    noIeCompat: true,
+    localIdentName: "[local]--[hash:base64:5]" // if you use CSS Modules, and custom `localIdentName`, default is '[local]--[hash:base64:5]'.
+  })
 );
