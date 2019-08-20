@@ -5,11 +5,10 @@ const {
     dialog,
     shell
 } = require('electron');
-const version = '0.1.0';
 const path = require('path');
 const isDev = require('electron-is-dev');
 
-let mainWindow, aboutWindow;
+let mainWindow;
 
 const menus = [{
         label: '文件',
@@ -60,19 +59,17 @@ const menus = [{
         }, {
             label: '官方网站',
             click: () => {
-                dialog.showMessageBoxSync({
+                let c = dialog.showMessageBoxSync({
                     type: 'warning',
                     title: '官方网站',
-                    message: '本软件仅做交流学习使用！没有任何官方网站！也没有计划做官方网站！请到GitHub进行下载/更新！'
-                });
-            }
-        }, {
-            label: '版本',
-            click: () => {
-                dialog.showMessageBoxSync({
-                    title: '版本号',
-                    message: version
-                });
+                    message: '本软件仅做交流学习使用！没有任何官方网站！也没有计划做官方网站！请到GitHub进行下载/更新！',
+                    
+                    buttons: ['前往GitHub查看', '取消'],
+                    defaultId: 1
+                })
+                if (c === 0) {
+                    shell.openExternal('https://github.com/asdjgfr/DFL-X');
+                }
             }
         }, {
             label: '反馈',
@@ -94,19 +91,7 @@ const menus = [{
     {
         label: '关于',
         click: () => {
-            aboutWindow = new BrowserWindow({
-                parent: mainWindow,
-                modal: true,
-                alwaysOnTop: true,
-                skipTaskbar: true,
-                resizable: false,
-                minimizable: false,
-                autoHideMenuBar: true,
-                webPreferences: {
-                    nodeIntegration: true
-                }
-            });
-            aboutWindow.loadURL(`file://${path.join(__dirname, `../${isDev?'public':'build'}/about.html`)}`);
+            mainWindow.webContents.send('open-about', true);
         }
     }
 ];
