@@ -1,3 +1,20 @@
-.big {
-  font-size: 50px;
+@import '~@/src/global.less';
+
+.about {
+  text-align: center;
+}
+
+.gpl-image {
+  cursor: pointer;
+  transition: 0.2s;
+  transform: translate3d(0, 0, 0);
+}
+
+.gpl-image:hover {
+  transform: translate3d(0, -3px, 0);
+}
+
+.warning {
+  color: @half-black;
+  font-size: 12px;
 }
