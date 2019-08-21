@@ -5418,6 +5418,13 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
+immutability-helper@^3.0.1:
+  version "3.0.1"
+  resolved "http://172.16.104.140:4873/immutability-helper/-/immutability-helper-3.0.1.tgz#4f609c5afbf8d78cb297970e8af2fba8b0eda1d6"
+  integrity sha1-T2CcWvv414yyl5cOivL7qLDtodY=
+  dependencies:
+    invariant "^2.2.4"
+
 immutable@^3.7.4:
   version "3.8.2"
   resolved "http://172.16.104.140:4873/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
