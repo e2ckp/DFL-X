@@ -11,3 +11,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* 滚动条 */
+::-webkit-scrollbar-thumb:horizontal {
+  /*水平滚动条的样式*/
+  width: 4px;
+  background-color: #CCCCCC;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+  /*滚动条的背景颜色*/
+  border-radius: 0;
+  /*滚动条的圆角宽度*/
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  /*滚动条的宽度*/
+  height: 8px;
+  /*滚动条的高度*/
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  /*垂直滚动条的样式*/
+  height: 50px;
+  background-color: rgba(153, 153, 153, 0.4);
+  opacity: 0.1;
+  border-radius: 6px;
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  border: 2px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /*滚动条的hover样式*/
+  height: 50px;
+  background-color: rgba(153, 153, 153, 1);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-button {
+  /*纵方向按钮的高度，宽度由scrollbar定义*/
+  height: 0;
+  /*横方向按钮的高度，高度由scrollbar定义*/
+  width: 0;
+}
