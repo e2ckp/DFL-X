@@ -47,6 +47,16 @@ const menus = [{
                     focusedWindow.reload()
                 }
             }
+        }, {
+            label: '选择DeepFaceLab版本',
+            click: () => {
+                mainWindow.webContents.send('choiceDFL', true);
+            }
+        }, {
+            label: '瘦身',
+            click: () => {
+                mainWindow.webContents.send('delDFL', true);
+            }
         }]
     },
     {
@@ -63,7 +73,7 @@ const menus = [{
                     type: 'warning',
                     title: '官方网站',
                     message: '本软件仅做交流学习使用！没有任何官方网站！也没有计划做官方网站！请到GitHub进行下载/更新！',
-                    
+
                     buttons: ['前往GitHub查看', '取消'],
                     defaultId: 1
                 })
